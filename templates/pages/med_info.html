@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dawai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body>
+    <nav class="main-nav">
+      <div class="nav-container">
+        <div class="main-nav-list">
+          <div class="main-nav-logo">
+            <img src="/static/imgs/potiential_logo3.png" />
+            <p>Dawai</p>
+          </div>
+
+          <div class="main-nav-links">
+            <a class="nav-link" href="#">الصفحة الرئيسية</a>
+            <a class="nav-link" href="#">الأدوية</a>
+            <a class="nav-link nav-cta" href="#">تواصل معنا</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="warning-section">
+      <div class="warning-container">
+        <p>
+          “This site is a mockup and is in no way affiliated with the GSK group
+          of companies.”
+        </p>
+      </div>
+    </div>
+
+    <section class="section-header">
+      <header class="main-header main-grid">
+        <img class="main-img" src="/static/imgs/medicinePic2(compressed).png" />
+        <div class="med-container">
+          <h1 class="med-name">{{ medication.name}}</h1>
+          <h3 class="commercial-name">الأسماء التجارية</h3>
+          <p class="sm-text">{{ medication.commercial_names }}</p>
+          <h3 class="concentration">التركيز</h3>
+          <p class="sm-text concentration-value">
+            {{ medication.concentration_TOB }} mcg
+          </p>
+        </div>
+        <div class="search-bar">
+          <!-- <input type="text" placeholder="البحث" />
+          <a class="btn btn-primary" href="#">أبحث</a> -->
+        </div>
+      </header>
+    </section>
+
+    <section class="section-video">
+      <div class="video-box">
+        <div class="video-header">
+          <h2>إرشادات عامة</h2>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="instructional-icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75"
+            />
+          </svg>
+        </div>
+        <div class="video-container">
+          <iframe
+            class="instructional-video"
+            src="https://www.youtube.com/embed/kph7W3_U8CQ?start=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-details">
+      <div class="main-details">
+        <div class="details-header-container">
+          <h2 class="details-header">معلومات إضافية</h2>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="details-icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+            />
+          </svg>
+        </div>
+
+        <div class="details-container">
+          <h3>دواعي الاستعمال</h3>
+          <p class="sm-text">{{ medication.treat_for }}</p>
+
+          <h3>شكل الدواء</h3>
+          <p class="sm-text">{{ medication.dosage_form }}</p>
+
+          <h3>الأعراض الجانبية</h3>
+          <div class="side-effects-container">
+            <p class="sub-text">{{ medication.side_effect_MP }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-emergency">
+      <div class="main-emergency">
+        <img class="doctor-img" src="/static/imgs/doctor(compressed).jpg" />
+        <div class="emergency-sm-container">
+          <h2>متى ترجع للطبيب؟</h2>
+          <p>{{ medication.emergency_case }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-resources">
+      <div class="resources-container">
+        <div class="resources-heading">
+          <h3>مصادر المعلومات</h3>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="resources-icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0120.25 6v12A2.25 2.25 0 0118 20.25H6A2.25 2.25 0 013.75 18V6A2.25 2.25 0 016 3.75h1.5m9 0h-9"
+            />
+          </svg>
+        </div>
+        <div class="resources-list">
+          <ul>
+            {% for resource in med_resources %}
+            <li>
+              <a
+                target="_blank"
+                href="{{ resource.website_link}}"
+                class="sm-text"
+              >
+                {{ resource.name }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container-footer">
+        <div class="nav-footer">
+          <a>من نحن؟</a>
+          <p>|</p>
+          <a>وظائف</a>
+          <p>|</p>
+          <a>الدعم الفني</a>
+          <p>|</p>
+          <a>تواصل معنا</a>
+        </div>
+
+        <ul>
+          <li>
+            <svg
+              class="social-icons"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="#FFA947"
+              viewBox="0 0 256 256"
+            >
+              <rect width="256" height="256" fill="none"></rect>
+              <path
+                d="M232,128a104.3,104.3,0,0,1-91.5,103.3,4.1,4.1,0,0,1-4.5-4V152h24a8,8,0,0,0,8-8.5,8.2,8.2,0,0,0-8.3-7.5H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,8-8.5,8.2,8.2,0,0,0-8.3-7.5H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0-8,8.5,8.2,8.2,0,0,0,8.3,7.5H120v75.3a4,4,0,0,1-4.4,4C62.8,224.9,22,179,24.1,124.1A104,104,0,0,1,232,128Z"
+              ></path>
+            </svg>
+          </li>
+          <li>
+            <svg
+              class="social-icons"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="#FFA947"
+              viewBox="0 0 256 256"
+            >
+              <rect width="256" height="256" fill="none"></rect>
+              <path
+                d="M245.7,77.7l-30.2,30.1C209.5,177.7,150.5,232,80,232c-14.5,0-26.5-2.3-35.6-6.8-7.3-3.7-10.3-7.6-11.1-8.8a8,8,0,0,1,3.9-11.9c.2-.1,23.8-9.1,39.1-26.4a108.6,108.6,0,0,1-24.7-24.4c-13.7-18.6-28.2-50.9-19.5-99.1a8.1,8.1,0,0,1,5.5-6.2,8,8,0,0,1,8.1,1.9c.3.4,33.6,33.2,74.3,43.8V88a48.3,48.3,0,0,1,48.6-48,48.2,48.2,0,0,1,41,24H240a8,8,0,0,1,7.4,4.9A8.4,8.4,0,0,1,245.7,77.7Z"
+              ></path>
+            </svg>
+          </li>
+          <li>
+            <svg
+              class="social-icons"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="#FFA947"
+              viewBox="0 0 256 256"
+            >
+              <rect width="256" height="256" fill="none"></rect>
+              <circle cx="128" cy="128" r="32"></circle>
+              <path
+                d="M172,28H84A56,56,0,0,0,28,84v88a56,56,0,0,0,56,56h88a56,56,0,0,0,56-56V84A56,56,0,0,0,172,28ZM128,176a48,48,0,1,1,48-48A48,48,0,0,1,128,176Zm52-88a12,12,0,1,1,12-12A12,12,0,0,1,180,88Z"
+              ></path>
+            </svg>
+          </li>
+          <li>
+            <svg
+              class="social-icons"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="#FFA947"
+              viewBox="0 0 256 256"
+            >
+              <rect width="256" height="256" fill="none"></rect>
+              <path
+                d="M234.3,69.8a23.5,23.5,0,0,0-14.5-16.3C185.6,40.3,131,40.4,128,40.4s-57.6-.1-91.8,13.1A23.5,23.5,0,0,0,21.7,69.8C19.1,79.7,16,97.9,16,128s3.1,48.3,5.7,58.2a23.5,23.5,0,0,0,14.5,16.3c32.8,12.7,84.2,13.1,91.1,13.1h1.4c6.9,0,58.3-.4,91.1-13.1a23.5,23.5,0,0,0,14.5-16.3c2.6-9.9,5.7-28.1,5.7-58.2S236.9,79.7,234.3,69.8Zm-72.1,61.5-48,32a3.6,3.6,0,0,1-2.2.7,4.5,4.5,0,0,1-1.9-.5A3.9,3.9,0,0,1,108,160V96a3.9,3.9,0,0,1,2.1-3.5,4,4,0,0,1,4.1.2l48,32a3.9,3.9,0,0,1,0,6.6Z"
+              ></path>
+            </svg>
+          </li>
+        </ul>
+
+        <div class="Rights">
+          <p>Copyright © 2023 by Dawai</p>
+          <ul class="footer-list">
+            <li><a>PRIVACY</a></li>
+            <p>|</p>
+            <li><a>LEGAL</a></li>
+            <p>|</p>
+            <li><a>TERMS</a></li>
+            <p>|</p>
+            <li><a>COOCKE POLICY</a></li>
+            <p>|</p>
+            <li><a>COOKIE SETTINGS</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
