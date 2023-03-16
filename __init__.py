@@ -19,7 +19,6 @@ moment = Moment(app)
 
 # Config App and Secrets
 app.config.from_pyfile('config.py')
-app.secret_key = SECRET_KEY
 
 # to initiate the db imported from models file
 db.init_app(app)
