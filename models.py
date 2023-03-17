@@ -4,7 +4,6 @@ from sqlalchemy import Float, PrimaryKeyConstraint
 # initialize 'db' variable as database instance
 db = SQLAlchemy()
 
-
 #----------------------------------------------------------------------------#
 # Models.
 #----------------------------------------------------------------------------#
