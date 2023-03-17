@@ -126,15 +126,16 @@ $ sudo vim /etc/nginx/sites-available/default
 
 - file contents:
 
-"""
+```
 upstream dawaiWebApp {
-server 127.0.0.1:8000; --> the IP and Port for gunicorn server
+    server 127.0.0.1:8000; --> the IP and Port for gunicorn server
 }
 
 server {
-listen 80; --> To accepts IPv4 requests on port 80 (http)
-listen [::]:80 ipv6only=on; --> To accepts IPv6 requests on port 80 (http)
-server_name 172.31.38.198; --> server_name default_server(Private Server IP)
+        listen 80; --> To accepts IPv4 requests on port 80 (http)
+        listen [::]:80 ipv6only=on; --> To accepts IPv6 requests on port 80 (http)
+        server_name 172.31.38.198; --> server_name default_server(Private Server IP)
+
 
         # SSL configuration
         #
@@ -164,7 +165,7 @@ server_name 172.31.38.198; --> server_name default_server(Private Server IP)
             # try_files $uri $uri/ =404; --> see Note(1)
         }
 
-"""
+```
 
 #### Start the Nginx service and go to the Public IP address of your EC2 on the browser to see the default nginx landing page
 
@@ -175,11 +176,11 @@ $ sudo systemctl enable nginx
 
 - Add the following code at the top of the file (below the default comments)
 
-"""
-upstream flaskhelloworld {
-server 127.0.0.1:8000;
-}
-"""
+```
+    upstream flaskhelloworld {
+    server 127.0.0.1:8000;
+    }
+```
 
 - Add a proxy_pass to dawaiWebApp atlocation /
 
