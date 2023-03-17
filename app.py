@@ -8,7 +8,6 @@ from .models import *
 # App Constant Variables
 #---------------------------------------------------------------#
 
-SECRET_KEY = "Dawai-2000"
 
 #---------------------------------------------------------------#
 # App Configuration
@@ -20,7 +19,6 @@ moment = Moment(app)
 
 # Config App and Secrets
 app.config.from_pyfile('config.py')
-app.secret_key = SECRET_KEY
 
 # to initiate the db imported from models file
 db.init_app(app)
@@ -577,5 +575,4 @@ def server_error(error):
 # specify port manually:
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(port=port, debug=True)
+    app.run(host='0.0.0.0', port=8080)

@@ -27,13 +27,6 @@
 # to reset the migration file, go to the CLI of DB and write the following command:
   DROP TABLE alembic_version;
 
-# master user for database-dawai:
-
-  endpoint: database-dawai.cyd5dayxhyym.me-south-1.rds.amazonaws.com
-  user: postgres
-  password: Dawai-2000
-  database: dawai
-
 # IMPORTANT NOTE:
 
   After creating a migration, either manually or as --autogenerate, you must apply it with alembic upgrade head. If you used db.create_all() from a shell, you can use alembic stamp head to indicate that the current state of the database represents the application of all migrations.
