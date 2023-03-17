@@ -1,51 +1,67 @@
 # Dawai
 
-#### How to use and enter the virtual environment in python:
+## How to use and enter the virtual environment in python:
 
-### for creating a virtual environment:
+##### for creating a virtual environment:
 
+```
 python -m venv env
+```
 
-### for entering a virtual environment
+##### for entering a virtual environment
 
+```
 source env/bin/activate
+```
 
 ### How to check if you are using the virtual environment?
 
 see the (env) before the comand line header, for example:
-(env) shino@ShinoPC:~/class-demos/company/MVPv2/backend$
+`(env) shino@ShinoPC:~/class-demos/company/MVPv2/backend$`
 
-### How to initialize the migration file?
+#### How to initialize the migration file?
 
-### creating a migration file
+##### creating a migration file
 
+```
 flask db init
+```
 
-### making the migration version file
+##### making the migration version file
 
+```
 flask db migrate
+```
 
-### commiting the changes of the migration version file
+##### commiting the changes of the migration version file
 
+```
 flask db upgrade
+```
 
-### undo the changes of the migration version file
+##### undo the changes of the migration version file
 
+```
 flask db downgrade
+```
 
-### to reset the migration file, go to the CLI of DB and write the following command:
+##### to reset the migration file, go to the CLI of DB and write the following command:
 
-    DROP TABLE alembic_version;
+```
+DROP TABLE alembic_version;
+```
 
 ### IMPORTANT NOTE:
 
-After creating a migration, either manually or as --autogenerate, you must apply it with alembic upgrade head. If you used db.create_all() from a shell, you can use alembic stamp head to indicate that the current state of the database represents the application of all migrations.
+After creating a migration, either manually or as `--autogenerate`, you must apply it with alembic upgrade head. If you used `db.create_all()` from a shell, you can use alembic stamp head to indicate that the current state of the database represents the application of all migrations.
 
 YOU can use the following command to make the database up to date:
 
+```
 $ flask db stamp head
 $ flask db migrate
 $ flask db upgrade
+```
 
 ## How to manage EC2 instance and the server inside it
 
@@ -57,31 +73,39 @@ As described, the Python Web Server Gateway Interface (WSGI) is a way to make su
 
 First, you have to install gunicorn in the virtualenv of your application:
 
+```
 $ pip install gunicorn
+```
 
 and to force pip in installing the gunicorn use:
 
+```
 $ pip install -I gunicorn
+```
 
 #### Run Gunicorn
 
 Go to your project directory, then run the following command:
 
+```
 $ gunicorn [application name in the directory]:app [-b 0.0.0.0:8000] <- optional
+```
 
 To exit the program (Ctrl+C to exit gunicorn)
 
 #### Other configration
 
-We will create a .service file in the /etc/systemd/system folder, and specify what would happen to gunicorn when the system reboots. We will be adding 3 parts to systemd Unit file — Unit, Service, Install
+We will create a .service file in the `/etc/systemd/system` folder, and specify what would happen to gunicorn when the system reboots. We will be adding 3 parts to systemd Unit file — Unit, Service, Install
 
-Unit — This section is for description about the project and some dependencies Service — To specify user/group we want to run this service after. Also some information about the executables and the commands. Install — tells systemd at which moment during boot process this service should start. With that said, create an unit file in the /etc/systemd/system directory
+Unit — This section is for description about the project and some dependencies Service — To specify `user/group` we want to run this service after. Also some information about the executables and the commands. Install — tells systemd at which moment during boot process this service should start. With that said, create an unit file in the /etc/systemd/system directory
 
+```
 $ sudo vim /etc/systemd/system/gunicorn.service
+```
 
 ### file contents
 
-"""
+```
 [Unit]
 Description=Gunicorn Service
 After=network.target # it means that the service will be started if the network connection established
@@ -94,23 +118,29 @@ ExecStart=/home/ubuntu/production/env/webapp/bin/gunicorn app:app # gunicorn pat
 
 [Install]
 WantedBy=multi-user.target
-"""
+```
 
 (NOTE: gunicorn can be replaced with any other name. for example flaskapp.service)
 
 #### Basic commands
 
+```
 $ sudo systemctl daemon-reload --> (reload the gunicorn service)
 $ sudo systemctl start helloworld --> (start the gunicorn service)
 $ sudo systemctl enable helloworld --> (enable the gunicorn service)
+```
 
 #### Check if the app is running with
 
+```
 $ curl localhost:8000
+```
 
 #### Check the status of Gunicorn
 
+```
 $ sudo systemctl status Gunicorn
+```
 
 ### Getting Started with nginx
 
@@ -118,11 +148,15 @@ Run Nginx Webserver to accept and route request to Gunicorn Finally, we set up N
 
 #### Installing Nginx
 
+```
 $ sudo apt-get nginx
+```
 
 #### Edit the default file in the sites-available folder
 
+```
 $ sudo vim /etc/nginx/sites-available/default
+```
 
 - file contents:
 
@@ -163,23 +197,25 @@ server {
         location / { # First attempt to serve request as file, then # as directory, then fall back to displaying a 404.
             proxy_pass http://dawaiWebApp; --> passes requests to the upstream function above
             # try_files $uri $uri/ =404; --> see Note(1)
-        }
+}
 
 ```
 
 #### Start the Nginx service and go to the Public IP address of your EC2 on the browser to see the default nginx landing page
 
+```
 $ sudo systemctl start nginx
 $ sudo systemctl enable nginx
+```
 
 #### What you have to add to the 'default' configuration file above (already done above):
 
 - Add the following code at the top of the file (below the default comments)
 
 ```
-    upstream flaskhelloworld {
+upstream flaskhelloworld {
     server 127.0.0.1:8000;
-    }
+}
 ```
 
 - Add a proxy_pass to dawaiWebApp atlocation /
@@ -190,8 +226,12 @@ proxy_pass http://dawaiWebApp;
 
 #### Restart Nginx
 
+```
 $ sudo systemctl restart nginx
+```
 
 #### Check the status of Nginx server
 
+```
 $ sudo systemctl status nginx
+```
